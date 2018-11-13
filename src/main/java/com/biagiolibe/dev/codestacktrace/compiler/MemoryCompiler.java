@@ -29,9 +29,6 @@ public class MemoryCompiler {
 //            System.out.println(compUnits.get(0).getCharContent(false));
             JavaCompiler.CompilationTask task = compiler.getTask(new PrintWriter(System.out), memoryClassManager, diagnostics, null, null, compUnits);
             if (!task.call()) {
-                for (Diagnostic d:diagnostics.getDiagnostics()) {
-                    System.err.println("error:"+d);
-                }
                 compilationResponse.setDiagnostics(diagnostics);
                 return compilationResponse;
             }

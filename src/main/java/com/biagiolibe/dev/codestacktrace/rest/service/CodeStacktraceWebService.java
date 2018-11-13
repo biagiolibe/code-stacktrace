@@ -7,11 +7,15 @@ import com.biagiolibe.dev.codestacktrace.rest.model.SourceCodeObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.tools.Diagnostic;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 @RestController
 public class CodeStacktraceWebService {
+    private static final Logger logger =Logger.getLogger(CodeStacktraceWebService.class.getName());
+
     @RequestMapping("/")
     public String index() {
         return "This is the very first time!";
@@ -20,16 +24,13 @@ public class CodeStacktraceWebService {
     @PostMapping(path="/compile-source", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String compile(@RequestBody SourceCodeObject sourceCode) {
+
         String code = sourceCode.getCode();
-        ConsoleOutputCapturer coc = new ConsoleOutputCapturer();
-        coc.start();
+        ConsoleOutputCapturer cosoleOutputCapturer = new ConsoleOutputCapturer();
         CompilationResponse compilationResponse = MemoryCompiler.compile(code);
-
-
-
         try {
             if(compilationResponse!=null){
-
+                cosoleOutputCapturer.start();
                 if(compilationResponse.getDiagnostics()==null) {
                     for (Method method : compilationResponse.getCompiledClasses()) {
                         method.setAccessible(true);
@@ -37,12 +38,17 @@ public class CodeStacktraceWebService {
                         //TODO optimize consoleOutputCapturer in order to capture data from all printer
                     }
                 }
+                else{
+                    for (Diagnostic d:compilationResponse.getDiagnostics().getDiagnostics()) {
+                        System.err.println(d);
+                    }
+                }
+
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-
-        return coc.stop();
+        return cosoleOutputCapturer.stop();
     }
 
     // final String source = "public final class "+MAIN_CLASS_NAME+" {\n"

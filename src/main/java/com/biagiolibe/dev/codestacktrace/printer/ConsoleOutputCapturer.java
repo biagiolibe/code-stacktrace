@@ -9,7 +9,8 @@ import java.util.List;
 
 public class ConsoleOutputCapturer {
     private ByteArrayOutputStream baos;
-    private PrintStream previous;
+    private PrintStream previousOut;
+    private PrintStream previousErr;
     private boolean capturing;
 
     public void start() {
@@ -18,14 +19,17 @@ public class ConsoleOutputCapturer {
         }
 
         capturing = true;
-        previous = System.out;      
+        previousOut = System.out;
+        previousErr = System.err;
         baos = new ByteArrayOutputStream();
 
-        OutputStream outputStreamCombiner = 
-                new OutputStreamCombiner(Arrays.asList(previous, baos)); 
-        PrintStream custom = new PrintStream(outputStreamCombiner);
+        OutputStream outputStreamCombiner = new OutputStreamCombiner(Arrays.asList(previousOut, baos));
+        OutputStream errorStreamCombiner = new OutputStreamCombiner(Arrays.asList(previousErr, baos));
+        PrintStream customOut = new PrintStream(outputStreamCombiner);
+        PrintStream customErr = new PrintStream(errorStreamCombiner);
 
-        System.setOut(custom);
+        System.setOut(customOut);
+        System.setErr(customErr);
     }
 
     public String stop() {
@@ -33,12 +37,14 @@ public class ConsoleOutputCapturer {
             return "";
         }
 
-        System.setOut(previous);
+        System.setOut(previousOut);
+        System.setErr(previousErr);
 
         String capturedValue = baos.toString();             
 
         baos = null;
-        previous = null;
+        previousOut = null;
+        previousErr = null;
         capturing = false;
 
         return capturedValue;
