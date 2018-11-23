@@ -1,0 +1,31 @@
+#Author: Biagio Liberto
+#Simple docker-compose file to creating and running codestacktrace containers network
+
+#Explanation of terms:
+  #version: Specifies which format version should be used. This is a mandatory field. Here we use the newer version, whereas the legacy format is ‘1’
+  #services: Each object in this key defines a service, a.k.a container. This section is mandatory
+  #build: If given, docker-compose is able to build an image from a Dockerfile
+  #context: If given, it specifies the build-directory, where the Dockerfile is looked-up
+  #dockerfile: If given, it sets an alternate name for a Dockerfile
+  #image: Tells Docker which name it should give to the image when build-features are used. Otherwise it is searching for this image in the library or remote-registry
+  #networks: This is the identifier of the named networks to use. A given name-value must be listed in the networks section
+  #volumes: This identifies the named volumes to use and the mountpoints to mount the volumes to, separated by a colon. Likewise in networks section, a volume-name must be defined in a separate volumes section
+  #links: This will create an internal network link between this service and the listed service. This service will be able to connect to the listed service, whereby the part before the colon specifies a service-name from the services section and the part after the colon specifies the hostname at which the service is listening on an exposed port
+  #depends_on: This tells Docker to start a service only, if the listed services have started successfully. NOTICE: This works only at container level! For a workaround to start the dependent application first, see config-client-entrypoint.sh
+  #logging: Here we are using the ‘json-file’ driver, which is the default one. Alternatively ‘syslog’ with a given address option or ‘none’ can be used
+  #networks: In this section we’re specifying the networks available to our services. In this example we let docker-compose create a named network of type ‘bridge’ for us. If the option external is set to true, it will use an existing one with the given name
+  #volumes: This is very similar to the networks section
+
+version: '3'
+services:
+  api:
+    build: ./codestacktrace-api/
+    ports:
+      - "8080:8080"
+    networks:
+    - codestacktrace-network
+    volumes:
+    - ./logs:/opt/codestacktrace-api/logs/
+networks:
+  codestacktrace-network:
+    driver: bridge

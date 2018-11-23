@@ -16,7 +16,8 @@
 *.iws
 *.iml
 *.ipr
-/out/
+out/
+build/
 
 ### NetBeans ###
 /nbproject/private/
@@ -48,3 +49,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+node_modules
