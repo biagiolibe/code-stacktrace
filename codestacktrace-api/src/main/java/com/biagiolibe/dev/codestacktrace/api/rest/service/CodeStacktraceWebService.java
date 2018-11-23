@@ -26,6 +26,8 @@ public class CodeStacktraceWebService {
     public String compile(@RequestBody SourceCodeObject sourceCode) {
 
         String code = sourceCode.getCode();
+
+        logger.info("[compile] Request source code: " + code);
         ConsoleOutputCapturer cosoleOutputCapturer = new ConsoleOutputCapturer();
         CompilationResponse compilationResponse = MemoryCompiler.compile(code);
         try {
