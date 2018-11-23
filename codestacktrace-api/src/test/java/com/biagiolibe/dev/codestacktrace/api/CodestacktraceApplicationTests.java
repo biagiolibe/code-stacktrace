@@ -1,4 +1,4 @@
-package com.biagiolibe.dev.codestacktrace;
+package com.biagiolibe.dev.codestacktrace.api;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,6 +1,6 @@
-package com.biagiolibe.dev.codestacktrace.compiler;
+package com.biagiolibe.dev.codestacktrace.api.compiler;
 
-import com.biagiolibe.dev.codestacktrace.compiler.model.JavaClassOutput;
+import com.biagiolibe.dev.codestacktrace.api.compiler.model.JavaClassOutput;
 
 import javax.tools.*;
 import java.io.IOException;

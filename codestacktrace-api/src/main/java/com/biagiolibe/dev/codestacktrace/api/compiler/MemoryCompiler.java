@@ -1,7 +1,7 @@
-package com.biagiolibe.dev.codestacktrace.compiler;
+package com.biagiolibe.dev.codestacktrace.api.compiler;
 
-import com.biagiolibe.dev.codestacktrace.compiler.model.CompilationResponse;
-import com.biagiolibe.dev.codestacktrace.compiler.model.JavaSourceCode;
+import com.biagiolibe.dev.codestacktrace.api.compiler.model.CompilationResponse;
+import com.biagiolibe.dev.codestacktrace.api.compiler.model.JavaSourceCode;
 
 import javax.tools.*;
 import java.io.PrintWriter;

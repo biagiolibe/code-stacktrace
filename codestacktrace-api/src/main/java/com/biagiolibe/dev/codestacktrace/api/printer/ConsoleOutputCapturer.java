@@ -1,4 +1,4 @@
-package com.biagiolibe.dev.codestacktrace.printer;
+package com.biagiolibe.dev.codestacktrace.api.printer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.biagiolibe.dev.codestacktrace.rest.model;
+package com.biagiolibe.dev.codestacktrace.api.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

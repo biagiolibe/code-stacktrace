@@ -1,4 +1,4 @@
-package com.biagiolibe.dev.codestacktrace.compiler.model;
+package com.biagiolibe.dev.codestacktrace.api.compiler.model;
 
 import javax.tools.SimpleJavaFileObject;
 import java.io.ByteArrayOutputStream;

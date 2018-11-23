@@ -1,9 +1,9 @@
-package com.biagiolibe.dev.codestacktrace.rest.service;
+package com.biagiolibe.dev.codestacktrace.api.rest.service;
 
-import com.biagiolibe.dev.codestacktrace.compiler.MemoryCompiler;
-import com.biagiolibe.dev.codestacktrace.compiler.model.CompilationResponse;
-import com.biagiolibe.dev.codestacktrace.printer.ConsoleOutputCapturer;
-import com.biagiolibe.dev.codestacktrace.rest.model.SourceCodeObject;
+import com.biagiolibe.dev.codestacktrace.api.compiler.MemoryCompiler;
+import com.biagiolibe.dev.codestacktrace.api.compiler.model.CompilationResponse;
+import com.biagiolibe.dev.codestacktrace.api.printer.ConsoleOutputCapturer;
+import com.biagiolibe.dev.codestacktrace.api.rest.model.SourceCodeObject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
