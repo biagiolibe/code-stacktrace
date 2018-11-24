@@ -7,3 +7,7 @@ Integrations:
 - Add redis for caching responses
 - Add mechanisms of blocking attacks (XSS, Injection, CSRF, ecc)
 - Create react client
+
+
+More:
+- improve logging sharing between docker containers and host
