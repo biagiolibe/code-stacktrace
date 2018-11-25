@@ -1,2 +1,2 @@
 # code-stacktrace
-A simple fiddle for handling code snippets in a faster way
+A simple fiddle for executing code snippets directly on browser.

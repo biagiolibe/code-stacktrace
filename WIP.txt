@@ -1,0 +1,35 @@
+This is a Work in Progress clipboard file.
+
+Tasks to perform in order to make all things works.
+
+On machine building images (jenkins as target solution):
+1. Install docker, docker-machine, docker-composite
+2. Set DOCKER_HOST (-H param on command line) for running images on the remote production hosts (optionally, or use -H tcp://remote:2375 param)
+
+4. Install gradle
+5. Install java 11
+
+On production machine (cloud host): 
+1. Install docker, docker-machine, docker-composite
+2. Configuring remote access (DANGEROUS):
+  - Use the command sudo systemctl edit docker.service to open an override file for docker.service in a text editor
+  - Add or modify the following lines, substituting your own values.
+
+            [Service]
+            ExecStart=
+            ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
+            
+  - Save the file.
+  - Reload the systemctl configuration
+            sudo systemctl daemon-reload
+            
+  - Restart Docker
+            sudo systemctl restart docker.service
+            
+  - Check to see whether the change was honored by reviewing the output of netstat to confirm dockerd is listening on the configured port.
+            sudo netstat -lntp | grep dockerd
+
+
+Git:
+1. Create webhook for triggering push events to jenkins
+
