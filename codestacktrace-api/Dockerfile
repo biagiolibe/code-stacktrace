@@ -1,4 +1,4 @@
-FROM openjdk:12-jdk-alpine
+FROM openjdk:11
 LABEL maintainer="biagiolibe"
 RUN mkdir /opt/codestacktrace-api/
 WORKDIR /opt/codestacktrace-api/
