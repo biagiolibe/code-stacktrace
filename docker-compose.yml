@@ -16,6 +16,9 @@
   #networks: In this section we’re specifying the networks available to our services. In this example we let docker-compose create a named network of type ‘bridge’ for us. If the option external is set to true, it will use an existing one with the given name
   #volumes: This is very similar to the networks section
 
+#In order to deploy network to a remote host use the command:
+#     docker-compose -H tcp://35.180.140.121:2375/ up -d --build
+
 version: '3'
 services:
   api:
